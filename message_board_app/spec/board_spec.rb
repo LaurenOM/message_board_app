@@ -5,4 +5,10 @@ describe 'Board' do
     expect(messages).to include 'Hey there'
     expect(messages).to include "What a nice day"
   end 
+
+  it 'adds a message to all and returns it' do 
+    board = Board.new
+    board.add_message('new message')
+    expect(Board.all).to include 'new message'
+  end 
 end 

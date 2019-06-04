@@ -6,8 +6,6 @@ class MessageBoard < Sinatra::Base
   end
 
   post '/view' do 
-    'Hello'
-    @name = params[:name]
     @message = params[:message]
     erb(:display)
   end 
