@@ -1,14 +1,20 @@
 require 'pg'
 
 class Board
-  def self.all
-    connection = PG.connect(dbname: 'message_board') 
-    result = connection.exec('SELECT * FROM messages')
-    result.map { |message| message['message']}
+
+  def self.instance
+    @board ||= Board.new
   end
 
-  def add_message(message)
+  def self.all
+    connection = PG.connect(dbname: 'message_board') 
+    result = connection.exec('SELECT * FROM messages ORDER BY date_time DESC')
+    # result.map { |message| { message['message'] }
+  end
+
+  def self.add_message(message)
     connection = PG.connect(dbname: 'message_board')
-    connection.exec("INSERT INTO messages (message) VALUES ('#{message}') " )
+    datetime = DateTime.now 
+    connection.exec("INSERT INTO messages (message, date_time) VALUES ('#{message}', '#{datetime}')" )
   end
 end 

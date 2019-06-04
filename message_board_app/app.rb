@@ -1,12 +1,18 @@
 require 'sinatra/base'
+require './lib/board'
 
 class MessageBoard < Sinatra::Base
   get '/' do 
     erb(:index)
   end
 
-  post '/view' do 
-    @message = params[:message]
+  post '/store_message' do
+    Board.add_message(params[:message])
+    redirect '/view'
+  end 
+
+  get '/view' do 
+    @message = Board.all
     erb(:display)
   end 
 

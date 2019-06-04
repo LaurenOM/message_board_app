@@ -1,2 +1,5 @@
-<%= @name %><br>
-<%= @message %>
+<body>
+  <% @message.each do |message|  %>
+    <%= message['message'] %><br><br>
+  <%end%>
+</body>
