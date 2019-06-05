@@ -21,4 +21,9 @@ feature MessageBoard do
     click_button 'Post'
     expect(page).to have_content('what a great day')
   end
+
+  scenario 'displays a box for comments on the view page' do 
+    visit '/view'
+    expect(page).to have_selector("input[type=submit][value='Comment']")
+  end 
 end
