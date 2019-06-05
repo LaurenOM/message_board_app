@@ -29,8 +29,8 @@ feature MessageBoard do
 
   scenario 'displays new comment after clicking comment' do 
     visit '/view'
-    fill_in 'comment', with: 'this is cool'
-    click_button 'Comment'
+    fill_in 'name_1', with: 'this is cool'
+    click_button('1')
     expect(page).to have_content('this is cool')
   end
 end
