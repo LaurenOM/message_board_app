@@ -7,7 +7,7 @@ class MessageBoard < Sinatra::Base
   end
 
   post '/store_message' do
-    Board.add_message(params[:message])
+    Board.add_message(params[:message],params[:name])
     redirect '/view'
   end 
 

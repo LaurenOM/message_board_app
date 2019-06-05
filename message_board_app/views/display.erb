@@ -1,5 +1,11 @@
-<body>
-  <% @message.each do |message|  %>
-    <%= message['message'] %><br><br>
-  <%end%>
-</body>
+<%# <link rel="stylesheet" type="text/css" href="/style.css"/>
+<body> %>
+  <div class="body">
+    <% @message.each do |message|  %>
+      <li>
+        <%= message['name'] %> says: <br>
+        <%= message['message'] %><br><br>
+      </li>
+    <%end%>
+  </div>
+<%# </body> %>

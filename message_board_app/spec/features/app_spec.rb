@@ -1,5 +1,15 @@
 feature MessageBoard do 
 
+  scenario 'it displayes the name' do 
+    visit '/view'
+    expect(page).to have_content('Lauren')
+  end 
+
+  scenario 'it displayes the messages' do 
+    visit '/view'
+    expect(page).to have_content('Today is a good day')
+  end 
+
   scenario 'presents a form asking for a message' do 
     visit '/'
     expect(page).to have_field("message")
