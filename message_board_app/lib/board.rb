@@ -1,6 +1,12 @@
 require 'pg'
 
 class Board
+  attr_reader :id, :name, :message
+  def initialize(id:, name:, message:)
+    @id = id
+    @name = name
+    @message = message
+  end
 
   def self.instance
     @board ||= Board.new
@@ -17,7 +23,9 @@ class Board
   def self.all
     Board.create_connection
     result = @connection.exec('SELECT * FROM messages ORDER BY date_time DESC')
-    # result.map { |message| { message['message'] }
+    result.map do |message|
+      Board.new(id: message['id'], name: message['name'], message: message['message'])
+    end
   end
 
   def self.add_message(message,name)

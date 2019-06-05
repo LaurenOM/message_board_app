@@ -15,7 +15,7 @@ feature MessageBoard do
     expect(page).to have_field("message")
   end 
 
-  scenario 'it displays name and message back' do
+  scenario 'it displays new message back' do
     visit '/'
     fill_in 'message', with: 'what a great day'
     click_button 'Post'
@@ -26,4 +26,11 @@ feature MessageBoard do
     visit '/view'
     expect(page).to have_selector("input[type=submit][value='Comment']")
   end 
+
+  scenario 'displays new comment after clicking comment' do 
+    visit '/view'
+    fill_in 'comment', with: 'this is cool'
+    click_button 'Comment'
+    expect(page).to have_content('this is cool')
+  end
 end
