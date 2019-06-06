@@ -33,4 +33,7 @@ feature MessageBoard do
     click_button('1')
     expect(page).to have_content('this is cool')
   end
+
+  scenario 'creates a new user' do 
+  end 
 end

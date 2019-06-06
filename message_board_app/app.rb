@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require './lib/board'
+require './lib/comment'
 
 class MessageBoard < Sinatra::Base
   get '/' do 
@@ -14,6 +15,11 @@ class MessageBoard < Sinatra::Base
   get '/view' do 
     @message = Board.all
     erb(:display)
+  end 
+
+  post '/add-comment' do 
+    Comment.add_comment(params[:id], params[:comment])
+    redirect('/view')
   end 
 
   run! if app_file == $0

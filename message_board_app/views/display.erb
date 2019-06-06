@@ -1,15 +1,22 @@
-<%# <link rel="stylesheet" type="text/css" href="/style.css"/>
-<body> %>
+<link rel="stylesheet" type="text/css" href="/style.css"/>
+<body>
   <div class="body">
     <% @message.each do |message|  %>
       <li>
         <%= message.name %> says: <br>
         <%= message.message %><br><br>
+        <div class="comments">
+          <% @comments = Comment.all(message.id)%>
+          <% @comments.each do |comment| %>
+             --<%= comment['comment'] %><br>
+          <% end %>
+        </div>
         <form method='post' action='/add-comment'>
+          <input value='<%=message.id%>' type ="hidden" name='id'>
           <input id='name_<%=message.id%>' type="text" name="comment"><br><br>
           <input id='<%=message.id%>' type ="submit" value="Comment">
         </form>
       </li>
     <%end%>
   </div>
-<%# </body> %>
+</body>
