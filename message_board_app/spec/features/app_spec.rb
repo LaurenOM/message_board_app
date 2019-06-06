@@ -35,5 +35,12 @@ feature MessageBoard do
   end
 
   scenario 'creates a new user' do 
+    visit '/users/new'
+    fill_in 'name', with: "Lauren"
+    fill_in 'email', with: 'lauren.omara22"gmail.com'
+    fill_in 'password', with: 'Password123'
+    click_button 'Register'
+
+    expect(page).to have_content('Hello, Lauren')
   end 
 end

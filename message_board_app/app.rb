@@ -22,5 +22,15 @@ class MessageBoard < Sinatra::Base
     redirect('/view')
   end 
 
+  get '/users/new' do 
+    erb(:new_user)
+  end 
+
+  post '/users/new' do
+    @name = params[:name] 
+    User.add(params[:name], params[:email], params[:password])
+    redirect '/view'
+  end 
+  
   run! if app_file == $0
 end 
